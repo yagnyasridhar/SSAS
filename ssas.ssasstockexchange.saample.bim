@@ -1,0 +1,59 @@
+{
+  "name": "saample",
+  "description": "Imported database from sql server 'stockexchange001.database.windows.net' and database 'ssas'",
+  "compatibilityLevel": 1400,
+  "model": {
+    "name": "saample",
+    "description": "A Tabular data model at the 1400 compatibility level.",
+    "defaultMode": "directQuery",
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "name": "SqlServer stockexchange001.database.windows.net ssas",
+        "description": "A data source definition that uses explicit sql server credentials from connection string",
+        "connectionString": "Provider=SQLNCLI11;Server=tcp:stockexchange001.database.windows.net;Initial Catalog=ssas;Persist Security Info=False;User ID=sriraji;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30",
+        "impersonationMode": "impersonateServiceAccount"
+      }
+    ],
+    "tables": [
+      {
+        "name": "STOCKEXCHANGE",
+        "description": "All data from STOCKEXCHANGE",
+        "columns": [
+          {
+            "name": "DATEOFEXCHANGE",
+            "dataType": "string",
+            "sourceColumn": "DATEOFEXCHANGE"
+          },
+          {
+            "name": "STOCKNAME",
+            "dataType": "string",
+            "sourceColumn": "STOCKNAME",
+            "displayOrdinal": 1
+          },
+          {
+            "name": "PRICE",
+            "dataType": "string",
+            "sourceColumn": "PRICE",
+            "displayOrdinal": 2
+          }
+        ],
+        "partitions": [
+          {
+            "name": "STOCKEXCHANGE",
+            "source": {
+              "query": "SELECT [DATEOFEXCHANGE],[STOCKNAME],[PRICE] FROM [dbo].[STOCKEXCHANGE]",
+              "dataSource": "SqlServer stockexchange001.database.windows.net ssas"
+            }
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ASW-DEFAULT-DIAGRAM",
+        "value": "{"Version":1,"Name":"default","Tables":[]}"
+      }
+    ]
+  }
+}
